@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tracky-The modern time tracker</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="todo.css" />
+	</head>
+
+	<body>
+		<nav>
+			<h2 class="logo">Tracky</h2>
+			<button class="docs">Users Guide</button>
+		</nav>
+		<main>
+			<div id="activity-log">
+				<div style="display: flex; justify-content: space-between">
+					<h3>Your activity log:</h3>
+					<form>
+						<select name="type" id="drop-down">
+							<option value="daily task">Daily Task</option>
+							<option value="weekly task">Weekly Task</option>
+							<option value="monthly task">Monthly Task</option>
+						</select>
+					</form>
+				</div>
+				<canvas
+					id="canvas"
+					width="300px"
+					height="300px"
+					style="
+						margin: 0 auto;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+					"
+				></canvas>
+				<ul class="activities"></ul>
+			</div>
+			<div id="todo" class="d-none">
+				<h3>hello todo's</h3>
+				<p>form to enter your todo.</p>
+				<form>
+					<div>
+						<label for="task">Task:</label>
+						<input type="text" name="task" id="task" required />
+					</div>
+					<div class="time">
+						<div class="select">
+							<label for="time-remaining-select"
+								>Time(in hours) for this task to be completed:
+							</label>
+							<select
+								name="time-remaining-select"
+								id="time-remaining-select"
+								class="select-css"
+							>
+								<option value="">select no of hours</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+							</select>
+						</div>
+						<div class="custom d-none">
+							<label for="time-remaining"> Time in hours: </label>
+							<input type="text" name="time-remaining" id="time-remaining" />
+						</div>
+						<input
+							class="toggle-btn"
+							type="button"
+							value="Choose different format"
+							required
+						/>
+					</div>
+					<button type="submit">Add task</button>
+				</form>
+				<div class="task-container"></div>
+			</div>
+			<div id="timer" class="d-none">
+				<h2>Stopwatch:</h2>
+				<span class="stopwatch_hours">0</span>
+				<span>:</span>
+				<span class="stopwatch_min">0</span>
+				<span>:</span>
+				<span class="stopwatch_seconds">0</span>
+				<div>
+					<button>Start</button>
+					<button>Pause</button>
+					<button>Reset</button>
+				</div>
+			</div>
+			<div id="bookmark" class="d-none">
+				<h3>Bookmarks</h3>
+				<ul class="bookmark-list"></ul>
+			</div>
+		</main>
+		<section class="navigation-btns">
+			<button class="nav-btn activity-log">Activities</button>
+			<button class="nav-btn todo">Todo</button>
+			<button class="nav-btn timer">stopwatch</button>
+			<button class="nav-btn bookmark">Bookmarks</button>
+		</section>
+		<script src="index.js" type="module"></script>
+	</body>
+</html>

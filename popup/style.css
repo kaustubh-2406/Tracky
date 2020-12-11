@@ -1,0 +1,66 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height: 500px;
+	width: 450px;
+	font-size: 1.125rem;
+}
+
+body {
+	position: relative;
+}
+
+h1 {
+	margin: 15px auto;
+	text-align: center;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: lawngreen;
+}
+
+.docs {
+	width: 100px;
+	flex-grow: initial;
+}
+
+main {
+	height: 80%;
+	overflow: scroll;
+}
+
+.navigation-btns {
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	width: 100%;
+	bottom: 0;
+	display: flex;
+	justify-content: space-around;
+	background-color: lightblue;
+	align-items: center;
+}
+
+/* utilities */
+button {
+	cursor: pointer;
+	display: flex;
+	flex-grow: 1;
+	background-color: rgb(106, 106, 170);
+	color: whitesmoke;
+	border-radius: 6px;
+	border: none;
+	padding: 10px;
+	margin: 5px;
+}
+
+.d-none {
+	display: none;
+}
