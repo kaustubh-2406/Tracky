@@ -47,7 +47,6 @@ function sanitizeData(data) {
 }
 
 async function doWork() {
-	// currentDate = await retrive('date');
 	setInterval(() => {
 		// main logic...
 		newDay = {
@@ -55,7 +54,10 @@ async function doWork() {
 			day: new Date().getDay(),
 			month: new Date().getMonth(),
 		};
-		if (!currentDate) currentDate = newDay;
+		if (!currentDate) {
+			currentDate = newDay;
+			store(currentDate, 'date');
+		}
 		console.log({ newDay, currentDate });
 
 		if (currentDate.month !== newDay.month) {
