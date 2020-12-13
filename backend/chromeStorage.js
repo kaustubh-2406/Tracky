@@ -22,8 +22,11 @@ function store(data, option) {
 			});
 			break;
 		case 'date':
-			chrome.storage.local.set({ date: data }, (data) =>
-				console.log('stored date', data)
+			chrome.storage.local.set({ date: data });
+			break;
+		case 'task':
+			chrome.storage.local.set({ task: data }, () =>
+				console.log('stored the tasks ')
 			);
 			break;
 		default:
@@ -35,13 +38,18 @@ function retrive(option, params = '') {
 	switch (option) {
 		case 'date':
 			chrome.storage.local.get(['date'], (data) => {
-				if (data.date) currentDate = data.date;
+				console.log('from retrive date', data.date);
+				if (data != {}) currentDate = data.date;
 				else {
 					currentDate = {
 						date: new Date().getDate(),
 						day: new Date().getDay(),
 						month: new Date().getMonth(),
 					};
+					store({ date: currentDate }, (d) =>
+						console.log('stored date in storage', d)
+					);
+					// return currentDate;
 				}
 			});
 			break;
@@ -71,7 +79,13 @@ function retrive(option, params = '') {
 				console.log(data);
 				if (data['bookmark']) bookmarks = data['bookmark'];
 				else bookmarks = [];
-				book(bookmarks, params);
+				// book(bookmarks, params);
+			});
+			break;
+		case 'task':
+			chrome.storage.local.get('task', (data) => {
+				if (data['task']) tasks = data['task'];
+				else tasks = [];
 			});
 			break;
 		default:

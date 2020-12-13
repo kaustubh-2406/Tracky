@@ -1,17 +1,24 @@
 {
-  "manifest_version": 2,
-  "name": "Tracky-the modern time tracking",
-  "version": "0.0.1",
-  "background": {
-    "scripts": ["backend/helpers.js", "backend/background.js", "backend/chromeApi.js"]
-  },
-  "content_scripts":[{
-    "matches":["<all_urls>"],
-    "js":["content.js"]
-  }],
-  "permissions":[ "tabs", "storage" ],
-  "browser_action": {
-    "default_title": "Tracky | modern time tracker",
-    "default_popup": "popup/index.html"
-  }
+	"manifest_version": 2,
+	"name": "Tracky-the modern time tracking",
+	"version": "0.0.1",
+	"background": {
+		"scripts": [
+			"backend/chromeStorage.js",
+			"backend/background.js",
+			"backend/chromeApi.js"
+		]
+	},
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["content.js"]
+		}
+	],
+	"permissions": ["tabs", "storage"],
+	"browser_action": {
+		"default_title": "Tracky | modern time tracker",
+		"default_popup": "popup/index.html",
+		"default_icon": "logo/72 Logo.png"
+	}
 }
