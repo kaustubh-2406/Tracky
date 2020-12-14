@@ -44,7 +44,6 @@ function retrive(option, params = '') {
 					store({ date: currentDate }, (d) =>
 						console.log('stored date in storage', d)
 					);
-					// return currentDate;
 				}
 			});
 			break;

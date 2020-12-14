@@ -23,9 +23,12 @@ export function createSlice(itsShare, total) {
 	ctx.moveTo(center.x, center.y);
 	ctx.arc(center.x, center.y, radius, startAngle, endAngle, false);
 	ctx.lineTo(center.x, center.y);
-	ctx.fillStyle = randomColor();
+	let generatedColor = randomColor();
+	ctx.fillStyle = generatedColor;
 	ctx.fill();
 	ctx.stroke();
 	ctx.closePath();
 	startAngle = endAngle;
+
+	return generatedColor;
 }

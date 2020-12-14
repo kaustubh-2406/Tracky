@@ -1,6 +1,6 @@
 // stopwatch functionality left only
 import { handShake } from './utils.js';
-import { drawChart, displayInDiv } from './activity.js';
+import { generateActivityUI } from './activity.js';
 import './stopwatch.js';
 import './todo.js';
 
@@ -20,12 +20,5 @@ Array.from(navBtns).forEach((btn, i) => {
 });
 
 handShake('daily task', (tasks) => {
-	if (!tasks) {
-		// TODO: error handling.
-		console.log('no task today');
-	} else {
-		console.log(tasks);
-		drawChart(tasks);
-		displayInDiv(tasks);
-	}
+	generateActivityUI(tasks);
 });

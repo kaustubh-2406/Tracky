@@ -1,25 +1,5 @@
-* {
-	margin: 0;
-	padding: 0;
-}
-
-html {
-	height: 500px;
-	width: 450px;
-}
-
-body {
-	height: 100%;
-	scroll-behavior: auto;
-}
-
-h1 {
-	margin: 15px auto;
-	text-align: center;
-}
-
 /* ============== SELECT TAG STYLES =========== */
-
+/* found the styling in a codepen... sorry forgot the link😥😥 */
 .select-css {
 	color: #444;
 	padding: 0.6rem 1.4rem 0.5rem 0.8rem;

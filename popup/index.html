@@ -15,9 +15,10 @@
 		</nav>
 		<main>
 			<div id="activity-log">
+				<div class="error"></div>
 				<div style="display: flex; justify-content: space-between">
 					<h3>Your activity log:</h3>
-					<form>
+					<form style="width: auto">
 						<select name="type" id="drop-down">
 							<option value="daily task">Daily Task</option>
 							<option value="weekly task">Weekly Task</option>
@@ -25,21 +26,14 @@
 						</select>
 					</form>
 				</div>
-				<canvas
-					id="canvas"
-					width="300px"
-					height="300px"
-					style="
-						margin: 0 auto;
-						display: flex;
-						justify-content: center;
-						align-items: center;
-					"
-				></canvas>
-				<ul class="activities"></ul>
+				<canvas id="canvas" width="250px" height="250px"></canvas>
+				<div>
+					<h4>Details-</h4>
+					<ul class="activities"></ul>
+				</div>
+				<p class="pad-end"></p>
 			</div>
 			<div id="todo" class="d-none">
-				<h3>hello todo's</h3>
 				<p>form to enter your todo.</p>
 				<form>
 					<div>
@@ -77,6 +71,7 @@
 					<button type="submit">Add task</button>
 				</form>
 				<div class="task-container"></div>
+				<p class="pad-end"></p>
 			</div>
 			<div id="timer" class="d-none">
 				<h2>Stopwatch:</h2>
@@ -90,6 +85,7 @@
 					<button>Pause</button>
 					<button>Reset</button>
 				</div>
+				<p class="pad-end"></p>
 			</div>
 		</main>
 		<section class="navigation-btns">

@@ -32,7 +32,7 @@ async function init() {
 init();
 
 // this functn currently just loops over a task and returns a new array
-// TODO: sanitize the data...ie only send the required info to popup.
+// TODO: sanitize the data...ie only send the required info to popup and also take into consideration the duplicate taks.
 function sanitizeData(data) {
 	if (Array.isArray(data)) return data;
 	else {

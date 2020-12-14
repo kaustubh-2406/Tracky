@@ -2,7 +2,7 @@
 
 ## What is it?
 This is a chrome extension that tracks your daily activities and help you organize your day. This can be used by person to manage and track their daily activities. \
-_(However, it is not that good as of now. __Bug friendly, crappy looking__ are some adjectives can be used😅😅.)_
+_(However, it is not that good as of now. __Bug friendly, crappy looking__(Edit: this now decent😁) are some adjectives can be used😅😅.)_
 
 ## How does it works? 
 - This project has a background which has all the background pages and it basically listens to [chrome tab events](https://developer.chrome.com/docs/extensions/reference/tabs "Chrome api reference") and storing the data in chrome storage via [chrome storage api](https://developer.chrome.com/docs/extensions/reference/storage "chrome storage").

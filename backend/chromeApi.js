@@ -1,5 +1,6 @@
-// #TODO: add snapshot functionality
-// --------------IMPORTANT-----------------
+// --------------IMPORTANT-----------------s
+// #TODO: add snapshot functionality.. by this i mean that you need not close the tab to see the activities or the sites visited.
+// this is not perfect...would love to change this some other day
 
 chrome.tabs.onCreated.addListener((e) => {
 	prevActiveTab = e.id;
@@ -13,7 +14,7 @@ chrome.tabs.onCreated.addListener((e) => {
 	console.log('created instance of tab', tabTasks);
 });
 
-chrome.tabs.onUpdated.addListener((id, changeInfo, tabInfo) => {
+chrome.tabs.onUpdated.addListener((id, _, tabInfo) => {
 	tabTasks.forEach((tab) => {
 		if (tab.id === id && tabInfo.status == 'complete') {
 			const url = new URL(tabInfo.url);
@@ -27,7 +28,7 @@ chrome.tabs.onUpdated.addListener((id, changeInfo, tabInfo) => {
 	prevActiveTab = id;
 });
 
-chrome.tabs.onRemoved.addListener((tabId, removeInfo) => {
+chrome.tabs.onRemoved.addListener((tabId) => {
 	// TODO: removeInfo contains windowId so if we want to extend the feature to other windows as well then we can do so..
 	tabTasks.forEach((tab, i) => {
 		if (tab.id == tabId) {

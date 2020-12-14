@@ -1,7 +1,7 @@
 import { handShake } from './utils.js';
 import { createSlice } from './canvas.js';
-// import chartjs
 
+const errorEl = document.querySelector('.error');
 const activityTabListContainer = document.querySelector('.activities');
 const form = document.querySelector('form');
 
@@ -10,15 +10,7 @@ form.addEventListener('change', (e) => {
 		case 'daily task':
 		case 'weekly task':
 		case 'monthly task':
-			handShake(e.target.value, (tasks) => {
-				if (!tasks) {
-					// TODO: error handling.
-					console.log('no task today');
-				} else {
-					drawChart(tasks);
-					displayInDiv(tasks);
-				}
-			});
+			handShake(e.target.value, (tasks) => generateActivityUI(tasks));
 			console.log('getting info');
 			break;
 		default:
@@ -27,29 +19,39 @@ form.addEventListener('change', (e) => {
 	}
 });
 
-export function drawChart(sampleData) {
-	let totalTime = sampleData.reduce((total, task) => total + task.time, 0);
-	sampleData.forEach((task) => {
-		createSlice(task.time, totalTime);
+function drawChart(tasks) {
+	let colorsArray = [];
+	let totalTime = tasks.reduce((total, task) => total + task.time, 0);
+	tasks.forEach((task) => {
+		let generatedColor = createSlice(task.time, totalTime);
+		colorsArray.push(generatedColor);
 	});
-	// TODO: make a colors array and then call displayInDiv in this function only
-	// displayInDiv(tasks, colors)
+	displayInDiv(tasks, colorsArray);
 }
 
-export function displayInDiv(tasks) {
-	tasks.forEach((task) => {
-		const div = document.createElement('li');
-		div.innerText = task.title;
-		const span = document.createElement('div');
-		span.innerText = task.url;
-		const time = document.createElement('p');
-		time.innerText = getTime(task.time);
+function displayInDiv(tasks, colorsArray) {
+	console.log('after', colorsArray);
+	tasks.forEach((task, i) => {
+		const li = document.createElement('li');
 
-		div.appendChild(span);
-		div.appendChild(time);
-		div.style.background = '#333';
-		div.style.color = 'white';
-		activityTabListContainer.appendChild(div);
+		const p = document.createElement('p');
+		p.innerText = task.url;
+		p.style.padding = '5px';
+
+		const container = document.createElement('p');
+		container.classList.add('activity-container');
+		const sub = document.createElement('sub');
+		sub.innerText = getTime(task.time);
+		const colorEl = document.createElement('span');
+		colorEl.style.backgroundColor = colorsArray[i];
+
+		container.appendChild(sub);
+		container.appendChild(colorEl);
+
+		li.appendChild(p);
+		li.appendChild(container);
+		li.classList.add('list-items');
+		activityTabListContainer.appendChild(li);
 	});
 }
 
@@ -67,5 +69,19 @@ function getTime(time) {
 		return inMin + ' minutes' + inSec + ' sec';
 	} else {
 		return inSec + 'sec';
+	}
+}
+
+export function generateActivityUI(tasks) {
+	if (tasks.length) {
+		errorEl.style.display = 'none';
+		drawChart(tasks);
+	} else {
+		document
+			.querySelectorAll('#activity-log > *')
+			.forEach((el) => (el.style.display = 'none'));
+		errorEl.style.display = 'block';
+		errorEl.innerHTML =
+			'Opps! it looks like there is nothing to show.<br><sub style="color:red"> A side note, there is one issue it doesnot update the tasks in real-time, ie you need to close a tab to see its logs. This will be fixed soon.</sub>';
 	}
 }
