@@ -16,11 +16,6 @@ function store(data, option) {
 				console.log('stored monthly data ');
 			});
 			break;
-		case 'bookmark':
-			chrome.storage.local.set({ bookmark: data }, (val) => {
-				console.log(val);
-			});
-			break;
 		case 'date':
 			chrome.storage.local.set({ date: data });
 			break;
@@ -72,14 +67,6 @@ function retrive(option, params = '') {
 				console.log('retrived data', data['monthlyTask']);
 				if (data['monthlyTask']) monthlyTaskLog = data['monthlyTask'];
 				else monthlyTaskLog = {};
-			});
-			break;
-		case 'bookmark':
-			chrome.storage.local.get(['bookmark'], (data) => {
-				console.log(data);
-				if (data['bookmark']) bookmarks = data['bookmark'];
-				else bookmarks = [];
-				// book(bookmarks, params);
 			});
 			break;
 		case 'task':

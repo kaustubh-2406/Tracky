@@ -7,7 +7,6 @@ const regex = /:\/\/(.[^/]+)/;
 let dailyTaskLog;
 let weeklyTaskLog;
 let monthlyTaskLog;
-let bookmarks = [];
 let tasks;
 
 let currentDate;
@@ -18,7 +17,6 @@ async function init() {
 	dailyTaskLog = await retrive('daily');
 	weeklyTaskLog = await retrive('weekly');
 	monthlyTaskLog = await retrive('monthly');
-	bookmarks = await retrive('bookmark');
 	tasks = await retrive('task');
 
 	currentDate = await retrive('date');
@@ -99,25 +97,6 @@ chrome.runtime.onMessage.addListener((msg, sender, sendRes) => {
 		case 'monthly task':
 			sendRes(sanitizeData(monthlyTaskLog));
 			break;
-		case 'add bookmark':
-			if (bookmarks.indexOf(msg.url))
-				bookmarks.splice(bookmarks.indexOf(msg.url), 1);
-			bookmarks.push(msg.url);
-			store(bookmarks, 'bookmark');
-			sendRes('done');
-			break;
-		case 'get bookmark':
-			// bookmarks = retrive('bookmark', msg.url);
-			console.log('get book', bookmarks);
-			sendRes(bookmarks);
-			break;
-		case 'modify bookmark':
-			console.log(msg.payload);
-			bookmarks = msg.payload;
-			sendRes(bookmarks);
-			store(bookmarks, 'bookmark');
-			break;
-		// only todo and stopwatch left
 		case 'get todo':
 			console.log('in get todo', tasks);
 			sendRes(tasks);
