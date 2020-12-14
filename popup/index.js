@@ -1,7 +1,6 @@
-// stopwatch and todo left only
+// stopwatch functionality left only
 import { handShake } from './utils.js';
 import { drawChart, displayInDiv } from './activity.js';
-import './bookmark.js';
 import './stopwatch.js';
 import './todo.js';
 
