@@ -32,7 +32,7 @@ function store(data, option) {
 function retrive(option, params = '') {
 	switch (option) {
 		case 'date':
-			chrome.storage.local.get(['date'], (data) => {
+			chrome.storage.local.get('date', (data) => {
 				console.log('from retrive date', data.date);
 				if (data != {}) currentDate = data.date;
 				else {
@@ -48,29 +48,29 @@ function retrive(option, params = '') {
 			});
 			break;
 		case 'daily':
-			chrome.storage.local.get(['dailyTask'], (data) => {
-				if (data['dailyTask']) dailyTaskLog = data['dailyTask'];
+			chrome.storage.local.get('dailyTask', (data) => {
+				if (data.dailyTask) dailyTaskLog = data.dailyTask;
 				else dailyTaskLog = [];
-				console.log('retrived data', data['dailyTask']);
+				console.log('retrived data', data.dailyTask);
 			});
 			break;
 		case 'weekly':
-			chrome.storage.local.get(['weeklyTask'], (data) => {
+			chrome.storage.local.get('weeklyTask', (data) => {
 				console.log('retrived data', data);
-				if (data['weeklyTask']) weeklyTaskLog = data['weeklyTask'];
+				if (data.weeklyTask) weeklyTaskLog = data.weeklyTask;
 				else weeklyTaskLog = {};
 			});
 			break;
 		case 'monthly':
-			chrome.storage.local.get(['monthlyTask'], (data) => {
-				console.log('retrived data', data['monthlyTask']);
-				if (data['monthlyTask']) monthlyTaskLog = data['monthlyTask'];
+			chrome.storage.local.get('monthlyTask', (data) => {
+				console.log('retrived data', data.monthlyTask);
+				if (data.monthlyTask) monthlyTaskLog = data.monthlyTask;
 				else monthlyTaskLog = {};
 			});
 			break;
 		case 'task':
 			chrome.storage.local.get('task', (data) => {
-				if (data['task']) tasks = data['task'];
+				if (data.task) tasks = data.task;
 				else tasks = [];
 			});
 			break;
