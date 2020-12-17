@@ -44,7 +44,7 @@ nav {
 
 main {
 	height: 91%;
-	overflow: scroll;
+	overflow: auto;
 }
 
 .navigation-btns {

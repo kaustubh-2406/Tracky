@@ -1,4 +1,3 @@
-// Sorry for shorthand... was feeling lazy🙃🙃
 const stopwatch = document.querySelector('#timer');
 const sec = document.querySelector('.stopwatch_seconds');
 const min = document.querySelector('.stopwatch_min');
@@ -6,7 +5,7 @@ const hrs = document.querySelector('.stopwatch_hours');
 const [startBtn, pauseBtn, resetBtn] = document.querySelectorAll(
 	'#timer > div button'
 );
-// this variable is used to store the return value of setInterval, that is used to clean the interval
+
 let cleanInterval = null;
 
 startBtn.addEventListener('click', () => {

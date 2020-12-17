@@ -1,6 +1,5 @@
 import { handShake } from './utils.js';
 
-// #TODO: deleting and done functionality😥...
 const form = document.querySelector('#todo > form');
 const select = document.querySelector('#todo .select');
 const selectEl = document.querySelector('#todo select');
@@ -82,9 +81,9 @@ toggleTimeInputButton.addEventListener('click', () => {
 
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
+	// getting data from form
 	const data = new FormData(form);
 
-	// getting data from form
 	const obj = {
 		task: data.get('task'),
 		timeRemaining: selectTagVisible

@@ -1,4 +1,3 @@
-// stopwatch functionality left only
 import { handShake } from './utils.js';
 import { generateActivityUI } from './activity.js';
 import './stopwatch.js';
@@ -10,8 +9,8 @@ const sections = document.querySelectorAll('main > div');
 const activityTab = document.querySelector('#activity-log');
 let currentActiveTab = activityTab;
 
-// adding navigation functionality...abstraction thodha jhyadda ho gya😅
-Array.from(navBtns).forEach((btn, i) => {
+// setting event listeners for all the bottom navigation buttons
+navBtns.forEach((btn, i) => {
 	btn.addEventListener('click', () => {
 		currentActiveTab.style.display = 'none';
 		currentActiveTab = sections[i];
