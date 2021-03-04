@@ -56,10 +56,8 @@ async function doWork() {
 			currentDate = newDay;
 			store(currentDate, 'date');
 		}
-		console.log({ newDay, currentDate });
 
 		if (currentDate.month !== newDay.month) {
-			console.log('updated monthly info');
 			monthlyTaskLog = {};
 		}
 
@@ -67,7 +65,6 @@ async function doWork() {
 			// locally storing the data...
 			monthlyTaskLog[currentDate.date] = dailyTaskLog;
 			weeklyTaskLog[currentDate.day] = dailyTaskLog;
-			console.log('updated daily and weekly info');
 
 			// storing info in chrome storage.
 			store(dailyTaskLog, 'daily');
@@ -80,7 +77,6 @@ async function doWork() {
 			dailyTaskLog = [];
 		}
 		store(dailyTaskLog, 'daily');
-		console.log('in setInterval');
 	}, 1000);
 }
 
@@ -98,19 +94,16 @@ chrome.runtime.onMessage.addListener((msg, sender, sendRes) => {
 			sendRes(sanitizeData(monthlyTaskLog));
 			break;
 		case 'get todo':
-			console.log('in get todo', tasks);
 			sendRes(tasks);
 			tasks = retrive('task');
 			break;
 		case 'update todo':
 			// this is only remaining thing😁
-			console.log('in update todo task', msg.payload);
 			tasks = msg.payload;
 			sendRes('done');
 			store(tasks, 'task');
 			break;
 		default:
-			console.log(msg);
 			break;
 	}
 });

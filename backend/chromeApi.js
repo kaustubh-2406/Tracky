@@ -1,6 +1,5 @@
-// --------------IMPORTANT-----------------s
+// --------------IMPORTANT-----------------
 // #TODO: add snapshot functionality.. by this i mean that you need not close the tab to see the activities or the sites visited.
-// this is not perfect...would love to change this some other day
 
 chrome.tabs.onCreated.addListener((e) => {
 	prevActiveTab = e.id;
@@ -11,7 +10,6 @@ chrome.tabs.onCreated.addListener((e) => {
 		time: 0,
 		activationTime: Date.now(),
 	});
-	console.log('created instance of tab', tabTasks);
 });
 
 chrome.tabs.onUpdated.addListener((id, _, tabInfo) => {
@@ -22,7 +20,6 @@ chrome.tabs.onUpdated.addListener((id, _, tabInfo) => {
 
 			tab.url = tabInfo.url.match(regex)[1] || undefined;
 			tab.title = tab.url != 'www.google.com' ? tabInfo.title : params;
-			console.log('updated', tab);
 		}
 	});
 	prevActiveTab = id;
@@ -50,10 +47,8 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
 	tabTasks.forEach((tab, i) => {
 		if (tab.id === activeInfo.tabId) {
 			tab.activationTime = Date.now();
-			console.log('from activated', activeInfo);
 		} else if (tab.id === prevActiveTab) {
 			tab.time += Date.now() - tab.activationTime;
-			console.log(i + 'th tab minimized', {
 				id: tab.id,
 				url: tab.url,
 				time: tab.time,

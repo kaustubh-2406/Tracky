@@ -11,7 +11,6 @@ form.addEventListener('change', (e) => {
 		case 'weekly task':
 		case 'monthly task':
 			handShake(e.target.value, (tasks) => generateActivityUI(tasks));
-			console.log('getting info');
 			break;
 		default:
 			console.log('something went wrong.');
@@ -44,6 +43,8 @@ function displayInDiv(tasks, colorsArray) {
 		sub.innerText = getTime(task.time);
 		const colorEl = document.createElement('span');
 		colorEl.style.backgroundColor = colorsArray[i];
+		colorEl.style.border = '1px solid black';
+		colorEl.style.boxSizing = 'border-box';
 
 		container.appendChild(sub);
 		container.appendChild(colorEl);
@@ -82,6 +83,6 @@ export function generateActivityUI(tasks) {
 			.forEach((el) => (el.style.display = 'none'));
 		errorEl.style.display = 'block';
 		errorEl.innerHTML =
-			'Opps! it looks like there is nothing to show.<br><sub style="color:red"> A side note, there is one issue it doesnot update the tasks in real-time, ie you need to close a tab to see its logs. This will be fixed soon.</sub>';
+			'Opps! it looks like there is nothing to show.<br><sub style="color:red"> A side note, there is one issue it doesnot update the tasks in real-time, ie you need to close a tab to see its logs.</sub>';
 	}
 }
