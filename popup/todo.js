@@ -1,11 +1,16 @@
 import { handShake } from './utils.js';
 
-const form = document.querySelector('#todo > form');
-const select = document.querySelector('#todo .select');
-const selectEl = document.querySelector('#todo select');
-const customTimeInput = document.querySelector('#todo .custom');
-const toggleTimeInputButton = document.querySelector('#todo .toggle-btn');
-const taskContainer = document.querySelector('#todo .task-container');
+// Form elements
+const form = document.querySelector('#form-container');
+const select = document.querySelector('#form-container .select');
+const selectEl = document.querySelector('#form-container select');
+const customTimeInput = document.querySelector('#form-container .custom');
+const toggleTimeInputButton = document.querySelector('.toggle-btn');
+
+//  UI elements
+const taskContainer = document.querySelector('#todo .todo-item-container');
+const newTodo = document.querySelector('.add-task');
+const modalCloseBtn = document.querySelector('.form-close-btn');
 
 // state...
 let selectTagVisible = true;
@@ -27,11 +32,17 @@ function updateTodosInStore(todos) {
 }
 
 function createNewTask(task) {
+	const div = document.createElement('div');
+	div.classList.add('contents');
+	div.innerText = task.task;
+	if (task.completed) div.classList.add('completed');
+
 	const completedBtn = document.createElement('button');
-	completedBtn.innerText = 'DONE';
+	completedBtn.innerText = '👍';
 	completedBtn.classList.add('btn-complete');
+	completedBtn.style.flexGrow = 'unset';
 	completedBtn.addEventListener('click', () => {
-		completedBtn.parentElement.classList.toggle('completed');
+		div.classList.toggle('completed');
 		task.completed = true;
 		todos = todos.map((todo) => (todo != task ? todo : task));
 		updateTodosInStore(todos);
@@ -39,6 +50,7 @@ function createNewTask(task) {
 
 	const trashBtn = document.createElement('button');
 	trashBtn.classList.add('btn-trash');
+	trashBtn.style.flexGrow = 'unset';
 	trashBtn.innerText = '✂';
 	trashBtn.addEventListener('click', () => {
 		const index = todos.indexOf(task);
@@ -47,15 +59,20 @@ function createNewTask(task) {
 		createUI(todos);
 	});
 
-	const div = document.createElement('div');
-	div.classList.add('contents');
-	div.innerText = task.task;
+	const btns = document.createElement('div');
+	btns.style.width = '90px';
+	btns.style.display = 'flex';
+	btns.appendChild(completedBtn);
+	btns.appendChild(trashBtn);
 
 	const newDiv = document.createElement('div');
 	newDiv.classList.add('task-cont');
-	newDiv.appendChild(completedBtn);
+	newDiv.style.border = '1px solid black';
+	newDiv.style.borderRadius = '10px';
+	newDiv.style.padding = '5px 20px';
+
 	newDiv.appendChild(div);
-	newDiv.appendChild(trashBtn);
+	newDiv.appendChild(btns);
 
 	return newDiv;
 }
@@ -95,7 +112,16 @@ form.addEventListener('submit', (e) => {
 	};
 
 	form.reset();
-	todos.push(obj);
+	todos.unshift(obj);
 	updateTodosInStore(todos);
 	createUI(todos);
+	form.style.display = 'none';
+});
+
+newTodo.addEventListener('click', () => {
+	form.style.display = 'block';
+});
+
+modalCloseBtn.addEventListener('click', () => {
+	form.style.display = 'none';
 });

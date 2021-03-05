@@ -10,14 +10,13 @@
 
 	<body>
 		<nav>
-			<h2 class="logo">Tracky</h2>
-			<button class="docs">Users Guide</button>
+			<img style="padding-left: 3%" src="../logo/72 Logo.png" />
 		</nav>
-		<main>
+		<main class="center-main-content">
 			<div id="activity-log">
 				<div class="error"></div>
-				<div style="display: flex; justify-content: space-between">
-					<h3>Your activity log:</h3>
+				<div style="margin: 0; display: flex; justify-content: space-between">
+					<h2>Your activity log:</h2>
 					<form style="width: auto">
 						<select name="type" id="drop-down">
 							<option value="daily task">Daily Task</option>
@@ -31,19 +30,20 @@
 					<h4>Details-</h4>
 					<ul class="activities"></ul>
 				</div>
-				<p class="pad-end"></p>
 			</div>
 			<div id="todo" class="d-none">
-				<p>form to enter your todo.</p>
-				<form>
+				<h2>To-Do list</h2>
+				<div class="todo-item-container"></div>
+				<form id="form-container" style="display: none">
+					<span class="form-close-btn">X</span>
 					<div>
 						<label for="task">Task:</label>
 						<input type="text" name="task" id="task" required />
 					</div>
 					<div class="time">
 						<div class="select">
-							<label for="time-remaining-select"
-								>Time(in hours) for this task to be completed:
+							<label for="time-remaining-select">
+								Time(in hours) for this task to be completed:
 							</label>
 							<select
 								name="time-remaining-select"
@@ -61,37 +61,216 @@
 							<label for="time-remaining"> Time in hours: </label>
 							<input type="text" name="time-remaining" id="time-remaining" />
 						</div>
-						<input
-							class="toggle-btn"
-							type="button"
-							value="Choose different format"
-							required
-						/>
+						<button class="toggle-btn">Choose different format</button>
 					</div>
 					<button type="submit">Add task</button>
 				</form>
-				<div class="task-container"></div>
-				<p class="pad-end"></p>
+				<button class="add-task">+</button>
 			</div>
 			<div id="timer" class="d-none">
-				<h2>Stopwatch:</h2>
-				<span class="stopwatch_hours">0</span>
-				<span>:</span>
-				<span class="stopwatch_min">0</span>
-				<span>:</span>
-				<span class="stopwatch_seconds">0</span>
-				<div>
-					<button>Start</button>
-					<button>Pause</button>
-					<button>Reset</button>
+				<h2>Pomodoro:</h2>
+				<div class="time-div">
+					<div class="time-left">
+						<span class="stopwatch_hours">0</span>
+						<span>:</span>
+						<span class="stopwatch_min">0</span>
+						<span>:</span>
+						<span class="stopwatch_seconds">0</span>
+					</div>
+					<div class="pause-play-button-container">
+						<button>Start</button>
+						<button>Pause</button>
+						<button>Reset</button>
+					</div>
 				</div>
-				<p class="pad-end"></p>
 			</div>
 		</main>
 		<section class="navigation-btns">
-			<button class="nav-btn activity-log">Activities</button>
-			<button class="nav-btn todo">Todo</button>
-			<button class="nav-btn timer">stopwatch</button>
+			<button data-tooltip="Activities" class="nav-btn activity-log">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="32.944"
+					height="41.049"
+					viewBox="0 0 32.944 41.049"
+				>
+					<defs>
+						<style>
+							.cls-1 {
+								fill: none;
+								stroke: #000;
+								stroke-width: 3px;
+							}
+						</style>
+					</defs>
+					<g id="letter" transform="translate(-270.136 -255.79)">
+						<path
+							id="Path_5"
+							data-name="Path 5"
+							class="cls-1"
+							d="M1109.021,2923.09s1.354-7.583,7.583-8.4,21.4,0,21.4,0-7.042.271-7.312,8.4,0,20.854,0,20.854-.271,7.583-5.417,8.125-19.771,0-19.771,0,3.25.812,3.521-8.125S1109.021,2923.09,1109.021,2923.09Z"
+							transform="translate(-835 -2657)"
+						/>
+						<path
+							id="Path_6"
+							data-name="Path 6"
+							class="cls-1"
+							d="M1109.021,2923.09s1.354-7.583,7.583-8.4,21.4,0,21.4,0-7.042.271-7.312,8.4,0,20.854,0,20.854-.271,7.583-5.417,8.125-19.771,0-19.771,0,3.25.812,3.521-8.125S1109.021,2923.09,1109.021,2923.09Z"
+							transform="translate(-835 -2657)"
+						/>
+						<g
+							id="Group_4"
+							data-name="Group 4"
+							transform="translate(279.167 270.424)"
+						>
+							<line id="Line_4" data-name="Line 4" class="cls-1" x2="12.188" />
+							<line
+								id="Line_5"
+								data-name="Line 5"
+								class="cls-1"
+								x2="12.188"
+								transform="translate(0 6.5)"
+							/>
+							<line
+								id="Line_6"
+								data-name="Line 6"
+								class="cls-1"
+								x2="12.188"
+								transform="translate(0 13)"
+							/>
+						</g>
+					</g>
+				</svg>
+			</button>
+			<button data-tooltip="To-do's" class="nav-btn todo">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="34"
+					height="40"
+					viewBox="0 0 34 40"
+				>
+					<defs>
+						<style>
+							.cls-1 {
+								fill: #fff;
+							}
+
+							.cls-1,
+							.cls-2 {
+								stroke: #000;
+								stroke-width: 3px;
+							}
+
+							.cls-2,
+							.cls-4 {
+								fill: none;
+							}
+
+							.cls-3 {
+								stroke: none;
+							}
+						</style>
+					</defs>
+					<g id="book" transform="translate(-156.611 -80.532)">
+						<g
+							id="Rectangle_8"
+							data-name="Rectangle 8"
+							class="cls-1"
+							transform="translate(156.611 80.532)"
+						>
+							<rect class="cls-3" width="34" height="40" rx="10" />
+							<rect
+								class="cls-4"
+								x="1.5"
+								y="1.5"
+								width="31"
+								height="37"
+								rx="8.5"
+							/>
+						</g>
+						<g
+							id="Group_2"
+							data-name="Group 2"
+							transform="translate(169.491 92.648)"
+						>
+							<line id="Line_4" data-name="Line 4" class="cls-2" x2="19.766" />
+							<line
+								id="Line_5"
+								data-name="Line 5"
+								class="cls-2"
+								x2="19.766"
+								transform="translate(0 8.471)"
+							/>
+							<line
+								id="Line_6"
+								data-name="Line 6"
+								class="cls-2"
+								x2="19.766"
+								transform="translate(0 16.942)"
+							/>
+						</g>
+					</g>
+				</svg>
+			</button>
+			<button data-tooltip="Pomodoro" class="nav-btn timer">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="41"
+					height="41"
+					viewBox="0 0 41 41"
+				>
+					<defs>
+						<style>
+							.cls-1 {
+								fill: #fff;
+							}
+
+							.cls-1,
+							.cls-2 {
+								stroke: #000;
+								stroke-width: 3px;
+							}
+
+							.cls-2,
+							.cls-4 {
+								fill: none;
+							}
+
+							.cls-3 {
+								stroke: none;
+							}
+						</style>
+					</defs>
+					<g
+						id="Group_6"
+						data-name="Group 6"
+						transform="translate(-262.532 -38.532)"
+					>
+						<g
+							id="Ellipse_1"
+							data-name="Ellipse 1"
+							class="cls-1"
+							transform="translate(262.532 38.532)"
+						>
+							<circle class="cls-3" cx="20.5" cy="20.5" r="20.5" />
+							<circle class="cls-4" cx="20.5" cy="20.5" r="19" />
+						</g>
+						<line
+							id="Line_7"
+							data-name="Line 7"
+							class="cls-2"
+							y1="10.133"
+							transform="translate(283.656 49.523)"
+						/>
+						<line
+							id="Line_8"
+							data-name="Line 8"
+							class="cls-2"
+							x1="14.81"
+							transform="translate(282.097 60.435)"
+						/>
+					</g>
+				</svg>
+			</button>
 		</section>
 		<script src="index.js" type="module"></script>
 	</body>

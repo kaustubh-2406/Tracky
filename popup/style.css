@@ -7,15 +7,12 @@ html,
 body {
 	height: 500px;
 	width: 450px;
-	font-size: 1.125rem;
+	font-size: 1rem;
+	overflow: hidden;
 }
 
 body {
 	position: relative;
-}
-
-nav {
-	padding: 0 5px;
 }
 
 canvas {
@@ -32,9 +29,14 @@ h1 {
 
 nav {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
-	background-color: lawngreen;
+	background-color: #224577;
+	height: 55px;
+	padding: 0 5px;
+}
+
+nav > img {
+	height: 45px;
 }
 
 .docs {
@@ -44,7 +46,7 @@ nav {
 
 main {
 	height: 91%;
-	overflow: auto;
+	overflow-y: auto;
 }
 
 .navigation-btns {
@@ -57,6 +59,43 @@ main {
 	justify-content: space-around;
 	background-color: lightblue;
 	align-items: center;
+	transition: all 0.5s ease-in-out;
+}
+
+.nav-btn {
+	margin: 0;
+	border-radius: 0;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.nav-btn::before {
+	content: attr(data-tooltip);
+	visibility: hidden;
+	position: absolute;
+	left: 0.25rem;
+	bottom: 0.25rem;
+
+	padding: 5px 10px;
+	border-radius: 5px;
+	background-color: rgb(46, 41, 41);
+	color: white;
+	scale: 0;
+	transform-origin: bottom;
+
+	transform: translateX(50%) translateY(-150%);
+	transition: scale 1s ease-out;
+}
+
+.nav-btn:hover {
+	scale: 1;
+	background-color: rgb(74, 184, 221);
+}
+
+.nav-btn:hover::before {
+	visibility: visible;
 }
 
 ul {
@@ -64,17 +103,22 @@ ul {
 }
 
 .list-items {
-	background: rgba(144, 144, 144);
-	/* color: white; */
-	width: 90%;
+	background: rgb(228 222 222);
+	padding: 3px 10px;
 	margin: 5px auto;
 	border-radius: 5px;
+}
+
+.center-main-content {
+	width: 90%;
+	height: 79vh;
+	padding: 0 5%;
 }
 
 .activity-heading {
 	display: flex;
 	justify-content: space-between;
-	width: 90%;
+	width: 80%;
 	margin: 0 auto;
 }
 
@@ -90,8 +134,15 @@ ul {
 	border-radius: 4px;
 }
 
-.pad-end {
-	height: 45px;
+#todo {
+	position: relative;
+	height: 79vh;
+}
+
+.todo-item-container {
+	height: 75%;
+	padding: 10px;
+	overflow-y: auto;
 }
 
 button {
@@ -106,6 +157,94 @@ button {
 	margin: 5px;
 }
 
+button:disabled {
+	background-color: rgb(58, 56, 56);
+}
+
 .d-none {
 	display: none;
+}
+
+svg {
+	height: 30px;
+}
+
+.add-task {
+	all: unset;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	height: 50px;
+	width: 50px;
+	right: 5%;
+	bottom: 3%;
+	border-radius: 50%;
+	color: red;
+	font-size: 3rem;
+}
+
+#form-container {
+	font-size: 1rem;
+	z-index: 10;
+	position: absolute;
+	height: 200px;
+	margin: auto;
+	top: 25vh;
+	color: white;
+	padding: 10px 10px;
+}
+
+#form-container::before {
+	content: '';
+	height: 178%;
+	width: 117.6%;
+	overflow-x: hidden;
+	left: -25px;
+	right: 25px;
+	top: -122px;
+	bottom: 120px;
+	position: absolute;
+	background-color: black;
+	z-index: -1;
+}
+
+.form-close-btn {
+	position: absolute;
+	font-size: 2rem;
+	color: white;
+	right: 10%;
+	cursor: pointer;
+	top: -25%;
+}
+
+.completed {
+	text-decoration: line-through;
+}
+
+#timer {
+	background: url('../logo/72\ Logo.png') bottom right no-repeat;
+	background-size: 15%;
+}
+
+.time-left span {
+	font-size: 3rem;
+	color: red;
+}
+
+.time-div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 72vh;
+	width: 100%;
+}
+
+.pause-play-button-container {
+	display: flex;
+	flex-grow: unset;
+	justify-content: space-around;
+	align-items: center;
 }
